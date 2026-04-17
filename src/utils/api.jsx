@@ -3,7 +3,10 @@ import axios from "axios";
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export const FetchMovieData = async (setErrormessage,setMovies) => {
+export const FetchMovieData = async (setErrormessage,setMovies,setLoading) => {
+    setErrormessage("");
+    setLoading(true);
+
     try{
         const response = await axios.get(`${API_BASE_URL}/discover/movie`, {
             params: {
@@ -18,11 +21,13 @@ export const FetchMovieData = async (setErrormessage,setMovies) => {
         if(!response.data || !response.data.results){
             throw new Error("invalid response");
         }else{
-            setMovies(response.data.results);
+            setMovies(response.data.results || []);
         }
         
     }catch(err){
         console.log("error",err)
         setErrormessage("Error fetching movies.Try again later...")
+    } finally{
+        setLoading(false)
     }
 }

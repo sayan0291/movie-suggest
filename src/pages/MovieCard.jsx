@@ -1,7 +1,7 @@
 export const MovieCard = ({movie: {title,original_language,vote_average,poster_path,release_date}}) => {
     return(
         <div className="movie-card">
-            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : '/no-movie.png'} alt={`${title} image`} />
+            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : '/No-Poster-Card.png'} alt={`${title} image`} />
             <div className="mt-4">
                 <h3>{title}</h3>
                 <div className="content">
@@ -12,7 +12,7 @@ export const MovieCard = ({movie: {title,original_language,vote_average,poster_p
                     <span>•</span>
                     <p className="lang">{original_language}</p>
                     <span>•</span>
-                    <p>{release_date ? release_date.split('_')[0] : "N/A"}</p>
+                    <p className="year">{release_date ? release_date.split('-')[0] : "N/A"}</p>
                 </div>
             </div>
         </div>

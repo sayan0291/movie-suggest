@@ -32,7 +32,7 @@
     }
 
     header{
-        @apply sm:mt-10 mt-5;
+        @apply sm:mt-2 mt-2;
     }
 
     header img{
